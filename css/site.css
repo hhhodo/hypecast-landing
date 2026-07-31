@@ -88,9 +88,11 @@ header{position:sticky;top:0;z-index:20;}
   text-transform:uppercase;color:var(--text-default);}
 .kinetic-amp{font-family:var(--font-kinetic);font-weight:700;
   font-size:var(--fs-kinetic);line-height:var(--lh-kinetic);color:var(--text-default);}
-.kinetic-chip{display:inline-block;vertical-align:middle;width:.95em;aspect-ratio:2/3;margin-inline:.12em;}
-/* 스크롤에 따라 전체화면을 채워야 하는 이미지라 나머지(세로 2:3)와 달리 가로 비율 유지 */
-.hero__expand-media{position:relative;z-index:1;will-change:transform;width:1.5em;aspect-ratio:3/2;}
+.kinetic-chip{display:inline-block;vertical-align:middle;width:1.3em;aspect-ratio:3/2;margin-inline:.12em;}
+/* 스크롤에 따라 전체화면까지 커지는 이미지 — 확대 배율을 최대한 줄여 화질 저하를 최소화하도록
+   나머지 히어로 청보다 기본 크기를 훨씬 크게(뷰포트 비례) 잡음. 원본도 가로 1600px 실사진으로 교체 */
+.hero__expand-media{position:relative;z-index:1;will-change:transform;
+  width:clamp(90px, 12vw, 260px);aspect-ratio:3/2;}
 .hero__dim{position:absolute;inset:0;background:var(--color-primary-900);opacity:0;pointer-events:none;}
 .hero__reveal{position:absolute;max-width:640px;text-align:center;
   padding-inline:var(--gutter);opacity:0;pointer-events:none;}
