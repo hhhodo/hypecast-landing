@@ -78,10 +78,10 @@ header{position:sticky;top:0;z-index:20;}
    섞여 자연스럽게 줄바꿈되어야 하는 패턴은 flexbox보다 inline 흐름이 훨씬 안정적.
    Expand는 별도 섹션/이미지가 아니라 히어로의 세 번째 이미지(#hero-data-chip) 자체를
    transform:scale로 키우는 동일 요소 방식 — "다른 이미지가 새로 나타난다"는 인상을 주지 않음. */
-.hero{height:min(320vh, 2600px);position:relative;padding-inline:var(--gutter);}
-.hero__sticky{position:sticky;top:0;height:100vh;overflow:hidden;
+.hero{height:min(320vh, 2600px);position:relative;}
+.hero__sticky{position:sticky;top:0;height:100vh;width:100%;overflow:hidden;
   display:flex;align-items:center;justify-content:center;background:var(--color-canvas);}
-.hero__lines{width:100%;}
+.hero__lines{width:100%;padding-inline:var(--gutter);}
 .kinetic-line{width:100%;text-align:center;font-size:var(--fs-kinetic);margin-block:var(--space-1);}
 .kinetic-word{font-family:var(--font-kinetic);font-weight:700;font-style:normal;
   font-size:var(--fs-kinetic);line-height:var(--lh-kinetic);letter-spacing:var(--tracking-kinetic);
@@ -93,9 +93,11 @@ header{position:sticky;top:0;z-index:20;}
    나머지 히어로 청보다 기본 크기를 훨씬 크게(뷰포트 비례) 잡음. 원본도 가로 1600px 실사진으로 교체 */
 .hero__expand-media{position:relative;z-index:1;will-change:transform;
   width:clamp(90px, 12vw, 260px);aspect-ratio:3/2;}
-.hero__dim{position:absolute;inset:0;background:var(--color-primary-900);opacity:0;pointer-events:none;}
+.hero__dim{position:absolute;inset:0;background:var(--color-primary-900);opacity:0;pointer-events:none;
+  will-change:opacity;}
 .hero__reveal{position:absolute;max-width:640px;text-align:center;
-  padding-inline:var(--gutter);opacity:0;pointer-events:none;}
+  padding-inline:var(--gutter);opacity:0;pointer-events:none;will-change:opacity;}
+.hero__fade{will-change:opacity;}
 .hero__reveal-title{margin-top:var(--space-4);font-size:var(--fs-h1);font-weight:var(--fw-strong);
   color:var(--text-default-inverse);}
 .hero__reveal-desc{margin-top:var(--space-5);font-size:var(--fs-body-1);color:var(--color-primary-200);}

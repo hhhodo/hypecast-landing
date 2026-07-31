@@ -346,35 +346,45 @@
     content.style.opacity = 1;
     return;
   }
-  var ticking = false;
-  function update(){
+  function ease(p){ return 1 - (1 - p) * (1 - p); }
+
+  var targetProgress = 0;
+  var currentProgress = 0;
+  function computeTarget(){
     var rect = hero.getBoundingClientRect();
     var vh = window.innerHeight;
     var total = rect.height - vh;
-    var progress = total > 0 ? (-rect.top) / total : 0;
-    progress = Math.max(0, Math.min(1, progress));
+    targetProgress = total > 0 ? Math.max(0, Math.min(1, (-rect.top) / total)) : 0;
+  }
 
-    var growP = Math.min(1, progress / .5);
-    var growEased = 1 - (1 - growP) * (1 - growP);
+  function render(progress){
+    var vh = window.innerHeight;
+    var growP = ease(Math.min(1, progress / .5));
     var baseW = media.offsetWidth, baseH = media.offsetHeight;
     var coverScale = Math.max(vh / baseH, (window.innerWidth * 1.05) / baseW);
-    var scale = 1 + growEased * (coverScale - 1);
+    var scale = 1 + growP * (coverScale - 1);
     media.style.transform = 'scale(' + scale.toFixed(3) + ')';
 
-    var fadeOpacity = (1 - Math.min(1, progress / .25)).toFixed(3);
-    fadeEls.forEach(function(el){ el.style.opacity = fadeOpacity; });
+    var fadeOpacity = 1 - ease(Math.min(1, progress / .25));
+    fadeEls.forEach(function(el){ el.style.opacity = fadeOpacity.toFixed(3); });
 
-    var revealP = Math.max(0, (progress - .5) / .5);
+    var revealP = ease(Math.max(0, (progress - .5) / .5));
     dim.style.opacity = (revealP * .5).toFixed(3);
     content.style.opacity = revealP.toFixed(3);
-    ticking = false;
   }
-  function onScroll(){
-    if(!ticking){ window.requestAnimationFrame(update); ticking = true; }
+
+  // 스크롤값을 그대로 쓰지 않고 매 프레임 목표치로 서서히(lerp) 수렴시켜 버벅임 없이 부드럽게 처리
+  function raf(){
+    currentProgress += (targetProgress - currentProgress) * .12;
+    if(Math.abs(targetProgress - currentProgress) < .0005) currentProgress = targetProgress;
+    render(currentProgress);
+    window.requestAnimationFrame(raf);
   }
-  window.addEventListener('scroll', onScroll, {passive:true});
-  window.addEventListener('resize', onScroll);
-  update();
+  window.addEventListener('scroll', computeTarget, {passive:true});
+  window.addEventListener('resize', computeTarget);
+  computeTarget();
+  currentProgress = targetProgress;
+  window.requestAnimationFrame(raf);
 })();
 
 (function(){
