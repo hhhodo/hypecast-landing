@@ -1,6 +1,6 @@
 # HYPECAST — 팬덤 &amp; 브랜드 데이터 미디어 플랫폼 랜딩페이지
 
-**Live: https://hhhodo.github.io/flatten-landing/**
+**Live: https://hhhodo.github.io/hypecast-landing/**
 
 첨부된 Figma 레퍼런스(`get_design_context`, node `11:683`, 캔버스 2544px 기준)를 **그리드·비율·스타일까지
 그대로** 구현한 미디어 주제 원페이지 랜딩입니다. 브랜드명(HYPECAST)과 한글 콘텐츠(솔루션 설명, 캠페인 케이스,
