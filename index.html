@@ -20,7 +20,7 @@
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="stylesheet" href="css/styles.css">
 <link rel="stylesheet" href="css/site.css">
-<noscript><style>.reveal{opacity:1!important;transform:none!important;}</style></noscript>
+<noscript><style>.reveal{opacity:1!important;transform:none!important;}.img{opacity:1!important;}</style></noscript>
 </head>
 <body>
 
@@ -314,6 +314,19 @@
 </footer>
 
 <script>
+(function(){
+  // 이미지가 다운로드되는 도중 갑자기 팝인되지 않도록, 로드가 끝난 이미지만 서서히 페이드인
+  var imgs = document.querySelectorAll('img.img');
+  imgs.forEach(function(img){
+    if(img.complete && img.naturalWidth > 0){
+      img.classList.add('is-loaded');
+    } else {
+      img.addEventListener('load', function(){ img.classList.add('is-loaded'); });
+      img.addEventListener('error', function(){ img.classList.add('is-loaded'); });
+    }
+  });
+})();
+
 (function(){
   var els = document.querySelectorAll('.reveal');
   if(!('IntersectionObserver' in window)){

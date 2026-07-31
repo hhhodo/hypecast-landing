@@ -44,8 +44,11 @@
 
 body{background:var(--color-canvas);}
 
-/* 이미지 슬롯: 실사진 적용 — object-fit:cover로 박스에 맞춰 크롭, 사진 계열은 sharp(0)로 통일 */
-.img{border-radius:var(--radius-0);object-fit:cover;}
+/* 이미지 슬롯: 실사진 적용 — object-fit:cover로 박스에 맞춰 크롭, 사진 계열은 sharp(0)로 통일
+   로딩 도중 갑자기 팝인되지 않도록 배경(placeholder 회색)에서 서서히 페이드인 */
+.img{border-radius:var(--radius-0);object-fit:cover;background:var(--color-placeholder);
+  opacity:0;transition:opacity .5s ease;}
+.img.is-loaded{opacity:1;}
 
 /* 디자인 키트 기본 뱃지는 radius-circle(pill) → 사이트 전체 규칙(0)에 맞춰 재정의 */
 .badge{border-radius:var(--radius-0);}
