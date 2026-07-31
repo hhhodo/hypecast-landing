@@ -1,0 +1,124 @@
+/* =========================================================
+   FLATTEN — 팬덤 &amp; 브랜드 데이터 미디어 플랫폼 랜딩페이지
+   브랜드 토큰 + 컴포넌트. styles.css(디자인 키트)는 수정하지 않음.
+   variant: typo=loud / image=high / color=mono / image-radius=soft / card-radius=soft
+            / button-radius=soft / border=hairline / button-style=text / fw=700/400 / spacing=space-12
+   ※ Figma 레퍼런스 실측(get_design_context, node 11:683, 캔버스 2544px 기준)
+     / 히어로 대형 타이포 Helvetica Neue Bold 212px, tracking -8.48px → 기존 --fs-display-lg(102px)
+       초과 구간이라 --fs-kinetic 토큰을 신설(반응형 clamp)하고 폰트는 Figma 실측대로 Helvetica Neue 유지
+     / 본문 전반은 Pretendard(Medium/SemiBold/Regular) 실측 → 디자인 키트 두 웨이트(700/400) 규칙에 스냅
+     / 섹션 padding 212px 실측 → --space-section을 --space-12(200)로 오버라이드
+     / 카드·비디오 프레임 radius 5.3px 실측 → radius-sm(12px)에 스냅 (soft)
+     / 구분선 #666/#444 1px 실측 → border-hairline (hairline)
+     / 텍스트 링크만 존재, 솔리드 버튼 없음 → button-style=text
+   ※ 사용자 지시: 페이지 이동처럼 보이는 화살표/버튼 전부 제거, 모든 이미지 영역은 플레이스홀더(#d9d9d9) 처리
+   ========================================================= */
+
+:root{
+  /* mono 컬러 모드 — 브랜드 컬러 없이 그레이스케일만 사용 */
+  --space-section:var(--space-12);
+
+  /* 히어로 킨네틱 타이포 — Figma 실측 212px을 반응형으로 스냅(전용 토큰) */
+  --fs-kinetic:clamp(1.6rem, 7.5vw, 9.4rem);
+  --lh-kinetic:0.94;
+  --tracking-kinetic:-0.035em;
+  --font-kinetic:'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+  /* 실측 26px / 24px 카드 타이틀 — 기존 h3(32px)·body-1(20px) 사이 보간 토큰 */
+  --fs-card-title:1.625rem;
+  --fs-news-title:1.375rem;
+}
+
+body{background:var(--color-canvas);}
+
+/* 이미지 슬롯은 항상 플레이스홀더(#d9d9d9), object-fit 불필요 */
+.img{border-radius:var(--radius-sm);}
+
+/* ---------- header ---------- */
+.topbar{background:var(--color-primary-900);}
+.topbar__row{display:flex;justify-content:flex-end;padding:var(--space-2) var(--gutter);}
+.topbar__link{font-size:var(--fs-badge);font-weight:var(--fw-strong);color:var(--text-default-inverse);}
+
+.nav{display:flex;align-items:center;justify-content:space-between;
+  padding:var(--space-4) var(--gutter);background:rgba(255,255,255,.85);
+  position:sticky;top:0;z-index:10;backdrop-filter:blur(6px);}
+.nav__logo{font-size:var(--fs-body-1);font-weight:var(--fw-strong);letter-spacing:-.01em;color:var(--text-default);}
+.nav__links{display:flex;align-items:center;gap:var(--space-6);}
+.nav__links a{font-size:var(--fs-badge);font-weight:var(--fw-strong);color:var(--text-default);}
+.nav__links a:hover{color:var(--text-subtle);}
+
+/* ---------- hero: kinetic type ----------
+   표준 inline 텍스트 흐름 사용(flex-wrap 대신) — 거대 텍스트 사이에 인라인 이미지가
+   섞여 자연스럽게 줄바꿈되어야 하는 패턴은 flexbox보다 inline 흐름이 훨씬 안정적 */
+.hero{padding-block:var(--space-9);padding-inline:var(--gutter);}
+.hero__lines{width:100%;}
+.kinetic-line{width:100%;text-align:center;font-size:var(--fs-kinetic);margin-block:var(--space-1);}
+.kinetic-word{font-family:var(--font-kinetic);font-weight:700;font-style:normal;
+  font-size:var(--fs-kinetic);line-height:var(--lh-kinetic);letter-spacing:var(--tracking-kinetic);
+  text-transform:uppercase;color:var(--text-default);}
+.kinetic-amp{font-family:var(--font-kinetic);font-weight:700;
+  font-size:var(--fs-kinetic);line-height:var(--lh-kinetic);color:var(--text-default);}
+.kinetic-chip{display:inline-block;vertical-align:middle;width:1.5em;aspect-ratio:12/7;margin-inline:.12em;}
+
+/* ---------- section heading (no arrow — plain text) ---------- */
+.section__title{font-size:var(--fs-h1);font-weight:var(--fw-strong);color:var(--text-default);}
+.section__title--inverse{color:var(--text-default-inverse);}
+
+/* ---------- our solutions: 4-8 row list ---------- */
+.solutions{background:var(--color-primary-900);}
+.solutions__list{margin-top:var(--space-7);}
+.solutions__row{display:grid;grid-template-columns:4fr 8fr;column-gap:var(--space-6);
+  align-items:start;padding-block:var(--space-7);border-top:var(--border-1);border-color:var(--color-primary-700);}
+.solutions__mark{font-size:var(--fs-body-1);font-weight:var(--fw-strong);letter-spacing:-.01em;
+  text-transform:uppercase;color:var(--text-default-inverse);}
+.solutions__desc{font-size:var(--fs-h3);font-weight:var(--fw-base);line-height:var(--lh-h3);
+  color:var(--text-default-inverse);}
+
+/* ---------- campaign highlights: 6-6 offset grid ---------- */
+.campaign-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-8);margin-top:var(--space-7);}
+.campaign-col{display:flex;flex-direction:column;gap:var(--space-9);}
+.campaign-col--offset{margin-top:var(--space-13);}
+.campaign-card__img{width:100%;aspect-ratio:4/3;}
+.campaign-card__title{margin-top:var(--space-5);font-size:var(--fs-card-title);
+  font-weight:var(--fw-strong);color:var(--text-default);}
+.campaign-card__tags{display:flex;gap:var(--space-2);margin-top:var(--space-4);}
+.campaign-card__desc{margin-top:var(--space-3);font-size:var(--fs-body-2);color:var(--text-subtle);}
+
+/* ---------- newsroom: 4-4-4 grid ---------- */
+.newsroom{background:var(--color-primary-900);}
+.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-7);margin-top:var(--space-7);}
+.news-card__img{width:100%;aspect-ratio:3/2;border-radius:var(--radius-0);}
+.eyebrow{display:block;margin-top:var(--space-5);font-size:var(--fs-badge);font-weight:var(--fw-strong);
+  letter-spacing:.1em;text-transform:uppercase;color:var(--text-subtle);}
+.eyebrow--inverse{color:var(--color-primary-400);}
+.news-card__title{margin-top:var(--space-3);font-size:var(--fs-news-title);font-weight:var(--fw-strong);
+  color:var(--text-default-inverse);}
+.news-card__desc{margin-top:var(--space-3);font-size:var(--fs-body-2);color:var(--color-primary-200);}
+.news-card__date{margin-top:var(--space-3);font-size:var(--fs-body-2);font-weight:var(--fw-strong);color:var(--color-primary-400);}
+
+/* ---------- footer ---------- */
+.site-footer{background:var(--color-primary-900);padding-block:var(--space-9);}
+.footer__top{display:flex;justify-content:space-between;gap:var(--space-6);flex-wrap:wrap;}
+.footer__logo{font-size:var(--fs-body-1);font-weight:var(--fw-strong);color:var(--text-default-inverse);}
+.footer__nav{display:flex;gap:var(--space-7);flex-wrap:wrap;}
+.footer__col{display:flex;flex-direction:column;gap:var(--space-3);min-width:8em;}
+.footer__heading{font-size:var(--fs-badge);font-weight:var(--fw-strong);color:var(--text-default-inverse);}
+.footer__col a{font-size:var(--fs-badge);font-weight:var(--fw-base);color:var(--color-primary-200);}
+.footer__col a:hover{color:var(--text-default-inverse);}
+.footer__rule{margin-block:var(--space-7);border:none;border-top:1px solid var(--color-primary-700);}
+.footer__bottom p{font-size:var(--fs-badge);color:var(--color-primary-400);}
+.footer__bottom p + p{margin-top:var(--space-2);}
+
+/* ---------- responsive ---------- */
+@media (max-width:1024px){
+  .solutions__row{grid-template-columns:1fr;row-gap:var(--space-3);}
+  .campaign-grid{grid-template-columns:1fr;}
+  .campaign-col--offset{margin-top:0;}
+  .campaign-col{gap:var(--space-7);}
+  .news-grid{grid-template-columns:1fr 1fr;}
+}
+@media (max-width:768px){
+  .nav__links{display:none;}
+  .news-grid{grid-template-columns:1fr;}
+  .kinetic-chip{width:2.4em;}
+}
