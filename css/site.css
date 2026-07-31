@@ -1,8 +1,10 @@
 /* =========================================================
    HYPECAST — 팬덤 &amp; 브랜드 데이터 미디어 플랫폼 랜딩페이지
    브랜드 토큰 + 컴포넌트. styles.css(디자인 키트)는 수정하지 않음.
-   variant: typo=loud / image=high / color=mono / image-radius=sharp / card-radius=sharp
+   variant: typo=loud / image=high / color=mono(UI)+photo(콘서트/공연 실사진) / image-radius=sharp / card-radius=sharp
             / button-radius=sharp(0) / border=hairline / button-style=solid+text / fw=700/400 / spacing=space-12
+   ※ 실사진 16장(콘서트·공연·러너·스트리트 스냅) 적용 — UI 크롬(내비/버튼/뱃지/텍스트)은 그레이스케일 유지,
+     이미지 콘텐츠만 사진 고유 색감을 그대로 사용. 원본 대비 --Z 1600 리사이즈 + 압축으로 4MB대로 최적화.
    ※ Figma 레퍼런스 실측(get_design_context, node 11:683 홈 / 13:1076 Our Solutions 상세 / 13:1369 Contact —
      세 프레임 모두 "한 페이지" 랜딩 안에 섹션으로 흡수. 별도 페이지로 분리하지 않음)
      / 히어로 대형 타이포 Helvetica Neue Bold 212px, tracking -8.48px → 기존 --fs-display-lg(102px)
@@ -42,8 +44,8 @@
 
 body{background:var(--color-canvas);}
 
-/* 이미지 슬롯은 항상 플레이스홀더(#d9d9d9) — 사진 계열은 sharp(0)로 통일 */
-.img{border-radius:var(--radius-0);}
+/* 이미지 슬롯: 실사진 적용 — object-fit:cover로 박스에 맞춰 크롭, 사진 계열은 sharp(0)로 통일 */
+.img{border-radius:var(--radius-0);object-fit:cover;}
 
 /* 디자인 키트 기본 뱃지는 radius-circle(pill) → 사이트 전체 규칙(0)에 맞춰 재정의 */
 .badge{border-radius:var(--radius-0);}
