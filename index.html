@@ -233,31 +233,25 @@
         <p class="contact-aside__lede">문의하신 내용은 담당 부서에서 검토 후 신속하게 회신을 드립니다.</p>
         <p class="contact-aside__note">*영업일 기준 1~3일 소요 예정</p>
       </div>
-      <form class="contact-form reveal reveal--d1" onsubmit="return false;">
+      <form class="contact-form reveal reveal--d1" id="contact-form">
         <div class="field-grid">
           <div class="field">
-            <label for="cf-name">이름 *</label>
-            <input id="cf-name" type="text" required>
+            <input id="cf-name" type="text" placeholder="이름 *" aria-label="이름" required>
           </div>
           <div class="field">
-            <label for="cf-company">소속 회사 *</label>
-            <input id="cf-company" type="text" required>
+            <input id="cf-company" type="text" placeholder="소속 회사 *" aria-label="소속 회사" required>
           </div>
           <div class="field">
-            <label for="cf-phone">휴대폰 번호 *</label>
-            <input id="cf-phone" type="tel" required>
+            <input id="cf-phone" type="tel" placeholder="휴대폰 번호 *" aria-label="휴대폰 번호" required>
           </div>
           <div class="field">
-            <label for="cf-dept">부서/직급</label>
-            <input id="cf-dept" type="text">
+            <input id="cf-dept" type="text" placeholder="부서/직급" aria-label="부서/직급">
           </div>
           <div class="field field--full">
-            <label for="cf-email">이메일 *</label>
-            <input id="cf-email" type="email" required>
+            <input id="cf-email" type="email" placeholder="이메일 *" aria-label="이메일" required>
           </div>
           <div class="field field--full">
-            <label for="cf-message">문의 내용 *</label>
-            <textarea id="cf-message" placeholder="문의 내용을 입력해 주세요." required></textarea>
+            <textarea id="cf-message" placeholder="문의 내용을 입력해 주세요. *" aria-label="문의 내용" required></textarea>
           </div>
         </div>
         <label class="consent">
@@ -325,6 +319,35 @@
     });
   }, {threshold:.15, rootMargin:'0px 0px -8% 0px'});
   els.forEach(function(el){ io.observe(el); });
+})();
+
+(function(){
+  var form = document.getElementById('contact-form');
+  if(!form) return;
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var val = function(id){ return document.getElementById(id).value.trim(); };
+    var name = val('cf-name');
+    var company = val('cf-company');
+    var phone = val('cf-phone');
+    var dept = val('cf-dept');
+    var email = val('cf-email');
+    var message = val('cf-message');
+    var subject = '[HYPECAST 문의] ' + name + (company ? ' (' + company + ')' : '');
+    var body = [
+      '이름: ' + name,
+      '소속 회사: ' + company,
+      '휴대폰 번호: ' + phone,
+      '부서/직급: ' + dept,
+      '이메일: ' + email,
+      '',
+      '문의 내용:',
+      message
+    ].join('\n');
+    window.location.href = 'mailto:contact@hypecast.example'
+      + '?subject=' + encodeURIComponent(subject)
+      + '&body=' + encodeURIComponent(body);
+  });
 })();
 </script>
 </body>

@@ -150,10 +150,8 @@ body{background:var(--color-canvas);}
 .field-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-6);}
 .field{display:flex;flex-direction:column;}
 .field--full{grid-column:1 / -1;}
-.field label{font-size:var(--fs-body-2);font-weight:var(--fw-strong);color:var(--text-default);
-  margin-bottom:var(--space-2);}
 .field input,.field textarea{font:inherit;font-size:var(--fs-body-2);background:transparent;
-  border:none;border-bottom:1px solid var(--color-primary-300);border-radius:var(--radius-0);
+  border:none;border-bottom:2px solid var(--color-primary-300);border-radius:var(--radius-0);
   padding:var(--space-3) var(--space-2);color:var(--text-default);transition:border-color .2s ease;}
 .field input:focus,.field textarea:focus{outline:none;border-bottom-color:var(--color-primary-900);}
 .field input{height:48px;}
