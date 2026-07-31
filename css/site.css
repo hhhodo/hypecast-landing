@@ -56,14 +56,15 @@ body{background:var(--color-canvas);}
 .btn:hover{background:var(--color-primary-700);}
 .btn--lg{height:52px;padding-inline:var(--space-6);font-size:var(--fs-body-2);}
 
-/* ---------- header ---------- */
+/* ---------- header (GNB) — topbar+nav를 한 덩어리로 상단 고정 ---------- */
+header{position:sticky;top:0;z-index:20;}
 .topbar{background:var(--color-primary-900);}
 .topbar__row{display:flex;justify-content:flex-end;padding:var(--space-2) var(--gutter);}
 .topbar__link{font-size:var(--fs-badge);font-weight:var(--fw-strong);color:var(--text-default-inverse);}
 
 .nav{display:flex;align-items:center;justify-content:space-between;
   padding:var(--space-4) var(--gutter);background:rgba(255,255,255,.85);
-  position:sticky;top:0;z-index:10;backdrop-filter:blur(6px);}
+  backdrop-filter:blur(6px);}
 .nav__logo{font-size:var(--fs-body-1);font-weight:var(--fw-strong);letter-spacing:-.01em;color:var(--text-default);}
 .nav__links{display:flex;align-items:center;gap:var(--space-6);}
 .nav__links a{font-size:var(--fs-badge);font-weight:var(--fw-base);color:var(--text-subtle);}
@@ -82,6 +83,22 @@ body{background:var(--color-canvas);}
 .kinetic-amp{font-family:var(--font-kinetic);font-weight:700;
   font-size:var(--fs-kinetic);line-height:var(--lh-kinetic);color:var(--text-default);}
 .kinetic-chip{display:inline-block;vertical-align:middle;width:1.5em;aspect-ratio:12/7;margin-inline:.12em;}
+
+/* ---------- expand: 스크롤에 따라 이미지가 커지며 전체화면 콘텐츠로 전환 ---------- */
+.expand{position:relative;height:min(280vh, 2200px);background:var(--color-canvas);}
+.expand__stage{position:sticky;top:0;height:100vh;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;background:var(--color-canvas);}
+.expand__media{position:absolute;width:320px;aspect-ratio:12/7;}
+.expand__dim{position:absolute;inset:0;background:var(--color-primary-900);opacity:0;pointer-events:none;}
+.expand__content{position:relative;z-index:2;max-width:640px;text-align:center;
+  padding-inline:var(--gutter);opacity:0;pointer-events:none;}
+.expand__title{margin-top:var(--space-4);font-size:var(--fs-h1);font-weight:var(--fw-strong);
+  color:var(--text-default-inverse);}
+.expand__desc{margin-top:var(--space-5);font-size:var(--fs-body-1);color:var(--color-primary-200);}
+@media (max-width:768px){
+  .expand{height:min(220vh, 1600px);}
+  .expand__media{width:200px;}
+}
 
 /* ---------- section heading (no arrow — plain text) ---------- */
 .section__title{font-size:var(--fs-h1);font-weight:var(--fw-strong);color:var(--text-default);}
