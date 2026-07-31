@@ -89,7 +89,8 @@ header{position:sticky;top:0;z-index:20;}
 .kinetic-amp{font-family:var(--font-kinetic);font-weight:700;
   font-size:var(--fs-kinetic);line-height:var(--lh-kinetic);color:var(--text-default);}
 .kinetic-chip{display:inline-block;vertical-align:middle;width:.95em;aspect-ratio:2/3;margin-inline:.12em;}
-.hero__expand-media{position:relative;z-index:1;will-change:transform;}
+/* 스크롤에 따라 전체화면을 채워야 하는 이미지라 나머지(세로 2:3)와 달리 가로 비율 유지 */
+.hero__expand-media{position:relative;z-index:1;will-change:transform;width:1.5em;aspect-ratio:3/2;}
 .hero__dim{position:absolute;inset:0;background:var(--color-primary-900);opacity:0;pointer-events:none;}
 .hero__reveal{position:absolute;max-width:640px;text-align:center;
   padding-inline:var(--gutter);opacity:0;pointer-events:none;}
