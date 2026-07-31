@@ -34,14 +34,17 @@
   --fs-card-title:1.625rem;
   --fs-news-title:1.375rem;
 
-  /* 버튼·인풋 전용 radius — 카드 radius(soft) 스케일과 별개로 실측값(4px) 그대로 사용 */
-  --radius-btn:4px;
+  /* 버튼·뱃지·인풋 radius — 사용자 지시로 전부 0(sharp) 통일 */
+  --radius-btn:0;
 }
 
 body{background:var(--color-canvas);}
 
 /* 이미지 슬롯은 항상 플레이스홀더(#d9d9d9) — 사진 계열은 sharp(0)로 통일 */
 .img{border-radius:var(--radius-0);}
+
+/* 디자인 키트 기본 뱃지는 radius-circle(pill) → 사이트 전체 규칙(0)에 맞춰 재정의 */
+.badge{border-radius:var(--radius-0);}
 
 /* ---------- button ---------- */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);
@@ -148,8 +151,9 @@ body{background:var(--color-canvas);}
 .field label{font-size:var(--fs-body-2);font-weight:var(--fw-strong);color:var(--text-default);
   margin-bottom:var(--space-2);}
 .field input,.field textarea{font:inherit;font-size:var(--fs-body-2);background:var(--color-primary-050);
-  border:var(--border-1);border-radius:var(--radius-btn);padding:var(--space-3) var(--space-4);
-  color:var(--text-default);}
+  border:none;border-bottom:1px solid var(--color-primary-300);border-radius:var(--radius-0);
+  padding:var(--space-3) var(--space-2);color:var(--text-default);transition:border-color .2s ease;}
+.field input:focus,.field textarea:focus{outline:none;border-bottom-color:var(--color-primary-900);}
 .field input{height:48px;}
 .field textarea{height:200px;resize:vertical;}
 .field input::placeholder,.field textarea::placeholder{color:var(--text-disabled);}
@@ -171,6 +175,13 @@ body{background:var(--color-canvas);}
 .footer__rule{margin-block:var(--space-7);border:none;border-top:1px solid var(--color-primary-700);}
 .footer__bottom p{font-size:var(--fs-badge);color:var(--color-primary-400);}
 .footer__bottom p + p{margin-top:var(--space-2);}
+
+/* ---------- scroll reveal ---------- */
+.reveal{opacity:0;transform:translateY(28px);
+  transition:opacity .7s cubic-bezier(.16,.84,.44,1), transform .7s cubic-bezier(.16,.84,.44,1);}
+.reveal.is-visible{opacity:1;transform:none;}
+.reveal--d1{transition-delay:.1s;}
+.reveal--d2{transition-delay:.2s;}
 
 /* ---------- responsive ---------- */
 @media (max-width:1024px){
