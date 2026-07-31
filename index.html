@@ -1,4 +1,4 @@
-<!-- variant: typo=loud / image=high / color=mono / image-radius=sharp / card-radius=sharp / button-radius=custom(4px) / border=hairline / button-style=solid+text / fw=700/400 / spacing=space-12 -->
+<!-- variant: typo=loud / image=high / color=mono / image-radius=sharp / card-radius=sharp / button-radius=sharp(0) / border=hairline / button-style=solid+text / fw=700/400 / spacing=space-12 -->
 <!--
   layout:
   1. Header             — full-bleed (topbar + nav)
@@ -46,18 +46,18 @@
   <!-- Hero -->
   <section class="hero">
     <div class="hero__lines">
-      <p class="kinetic-line">
+      <p class="kinetic-line reveal">
         <span class="kinetic-word">EM</span>
         <span class="img kinetic-chip" role="img" aria-label="팬 참여 캠페인 이미지"></span>
         <span class="kinetic-word">POWERING</span>
       </p>
-      <p class="kinetic-line">
+      <p class="kinetic-line reveal reveal--d1">
         <span class="kinetic-word">FANDOM</span>
         <span class="kinetic-amp">&amp;</span>
         <span class="kinetic-word">BRAND</span>
         <span class="img kinetic-chip" role="img" aria-label="브랜드 캠페인 이미지"></span>
       </p>
-      <p class="kinetic-line">
+      <p class="kinetic-line reveal reveal--d2">
         <span class="kinetic-word">THROUGH</span>
         <span class="img kinetic-chip" role="img" aria-label="데이터 인사이트 이미지"></span>
         <span class="kinetic-word">DATA</span>
@@ -68,9 +68,9 @@
   <!-- Our Solutions -->
   <section class="section solutions" id="solutions">
     <div class="container container--wide">
-      <h2 class="section__title section__title--inverse">Our Solutions</h2>
+      <h2 class="section__title section__title--inverse reveal">Our Solutions</h2>
       <div class="solution-rows">
-        <article class="solution-row">
+        <article class="solution-row reveal">
           <div class="solution-row__media">
             <div class="img" role="img" aria-label="shoeprize 서비스 화면"></div>
           </div>
@@ -83,7 +83,7 @@
           </div>
         </article>
 
-        <article class="solution-row solution-row--reverse">
+        <article class="solution-row solution-row--reverse reveal">
           <div class="solution-row__media">
             <div class="img" role="img" aria-label="FLATTEN ERP 서비스 화면"></div>
           </div>
@@ -96,7 +96,7 @@
           </div>
         </article>
 
-        <article class="solution-row">
+        <article class="solution-row reveal">
           <div class="solution-row__media">
             <div class="img" role="img" aria-label="FLATTEN QUEUE 서비스 화면"></div>
           </div>
@@ -115,10 +115,10 @@
   <!-- Campaign Highlights -->
   <section class="section campaigns" id="campaigns">
     <div class="container container--wide">
-      <h2 class="section__title">Campaign Highlights</h2>
+      <h2 class="section__title reveal">Campaign Highlights</h2>
       <div class="campaign-grid">
         <div class="campaign-col">
-          <article class="campaign-card">
+          <article class="campaign-card reveal">
             <div class="img campaign-card__img" role="img" aria-label="슈프라이즈의 오프라인 인증 기반 히든퀘스트 캠페인 이미지"></div>
             <h3 class="campaign-card__title">슈프라이즈의 오프라인 인증 기반 히든퀘스트 캠페인</h3>
             <div class="campaign-card__tags">
@@ -127,7 +127,7 @@
             </div>
             <p class="campaign-card__desc">매장 방문과 행동 기반 미션 수행을 통해 팬과 브랜드 간의 실질적인 접점과 참여 확장</p>
           </article>
-          <article class="campaign-card">
+          <article class="campaign-card reveal">
             <div class="img campaign-card__img" role="img" aria-label="EA FC25 × PSG FAN EXCLUSIVE 이벤트 이미지"></div>
             <h3 class="campaign-card__title">EA FC25 × PSG FAN EXCLUSIVE 이벤트</h3>
             <div class="campaign-card__tags">
@@ -136,9 +136,27 @@
             </div>
             <p class="campaign-card__desc">온·오프라인 통합 캠페인을 통해 게임 타이틀 프로모션 및 오프라인 매장 방문까지 유도</p>
           </article>
+          <article class="campaign-card reveal">
+            <div class="img campaign-card__img" role="img" aria-label="글로벌 스니커즈 팝업 QR 인증 캠페인 이미지"></div>
+            <h3 class="campaign-card__title">글로벌 스니커즈 팝업 QR 인증 캠페인</h3>
+            <div class="campaign-card__tags">
+              <span class="badge">shoeprize</span>
+              <span class="badge">QUEUE</span>
+            </div>
+            <p class="campaign-card__desc">팝업 방문 인증부터 리워드 지급까지 QR 한 번으로 연결한 오프라인 체험 캠페인</p>
+          </article>
+          <article class="campaign-card reveal">
+            <div class="img campaign-card__img" role="img" aria-label="멤버십 통합 웰컴 캠페인 이미지"></div>
+            <h3 class="campaign-card__title">멤버십 통합 웰컴 캠페인</h3>
+            <div class="campaign-card__tags">
+              <span class="badge">shoeprize</span>
+              <span class="badge">ERP</span>
+            </div>
+            <p class="campaign-card__desc">온라인 멤버십과 오프라인 적립을 하나로 연결해 신규 가입 전환을 이끈 웰컴 캠페인</p>
+          </article>
         </div>
         <div class="campaign-col campaign-col--offset">
-          <article class="campaign-card">
+          <article class="campaign-card reveal">
             <div class="img campaign-card__img" role="img" aria-label="마리아나관광청 사이판 러닝 캠페인 이미지"></div>
             <h3 class="campaign-card__title">마리아나관광청 사이판 러닝 캠페인</h3>
             <div class="campaign-card__tags">
@@ -147,7 +165,7 @@
             </div>
             <p class="campaign-card__desc">커뮤니티 기반 러너 모집과 콘텐츠 제작으로 브랜드 체험과 인식 전환 성과 도출</p>
           </article>
-          <article class="campaign-card">
+          <article class="campaign-card reveal">
             <div class="img campaign-card__img" role="img" aria-label="신한은행 × SSG랜더스 적금 캠페인 이미지"></div>
             <h3 class="campaign-card__title">신한은행 × SSG랜더스 적금 캠페인</h3>
             <div class="campaign-card__tags">
@@ -155,6 +173,23 @@
               <span class="badge">QUEUE</span>
             </div>
             <p class="campaign-card__desc">한정판 굿즈를 활용한 팬 참여 기반 적금 전환 유도로 27억 잔액 유치</p>
+          </article>
+          <article class="campaign-card reveal">
+            <div class="img campaign-card__img" role="img" aria-label="여름 페스티벌 현장 대기열 운영 캠페인 이미지"></div>
+            <h3 class="campaign-card__title">여름 페스티벌 현장 대기열 운영 캠페인</h3>
+            <div class="campaign-card__tags">
+              <span class="badge">QUEUE</span>
+            </div>
+            <p class="campaign-card__desc">3,000명 규모 현장 대기열을 무중단으로 운영해 혼선 없는 입장 경험을 설계</p>
+          </article>
+          <article class="campaign-card reveal">
+            <div class="img campaign-card__img" role="img" aria-label="시즌 한정 굿즈 스탬프 적립 캠페인 이미지"></div>
+            <h3 class="campaign-card__title">시즌 한정 굿즈 스탬프 적립 캠페인</h3>
+            <div class="campaign-card__tags">
+              <span class="badge">shoeprize</span>
+              <span class="badge">QUEUE</span>
+            </div>
+            <p class="campaign-card__desc">앱 스탬프 적립과 매장 방문을 연동해 재구매 전환율을 끌어올린 시즌 캠페인</p>
           </article>
         </div>
       </div>
@@ -164,22 +199,22 @@
   <!-- Newsroom -->
   <section class="section newsroom" id="newsroom">
     <div class="container container--wide">
-      <h2 class="section__title section__title--inverse">Newsroom</h2>
+      <h2 class="section__title section__title--inverse reveal">Newsroom</h2>
       <div class="news-grid">
-        <article class="news-card">
+        <article class="news-card reveal">
           <div class="img news-card__img" role="img" aria-label="수백 명이 줄을 서도, 혼선 없이 운영한다 기사 이미지"></div>
           <p class="eyebrow eyebrow--inverse">SUCCESS STORY</p>
           <h3 class="news-card__title">수백 명이 줄을 서도, 혼선 없이 운영한다</h3>
           <p class="news-card__desc">훕시티, 플래튼 큐로 오프라인 선착순 이벤트를 정교하게 설계하다</p>
           <p class="news-card__date">2025.04</p>
         </article>
-        <article class="news-card">
+        <article class="news-card reveal">
           <div class="img news-card__img" role="img" aria-label="플래튼, 마리아나관광청과 함께 팬덤 기반 러닝 캠페인을 선보이다 기사 이미지"></div>
           <p class="eyebrow eyebrow--inverse">NEWS</p>
           <h3 class="news-card__title">플래튼, 마리아나관광청과 함께 팬덤 기반 러닝 캠페인을 선보이다</h3>
           <p class="news-card__date">2025.03</p>
         </article>
-        <article class="news-card">
+        <article class="news-card reveal">
           <div class="img news-card__img" role="img" aria-label="재고가 브랜드를 흔들지 않도록 기사 이미지"></div>
           <p class="eyebrow eyebrow--inverse">SERVICE</p>
           <h3 class="news-card__title">재고가 브랜드를 흔들지 않도록</h3>
@@ -193,12 +228,12 @@
   <!-- Contact -->
   <section class="contact-section" id="contact">
     <div class="container container--wide contact-layout">
-      <div>
+      <div class="reveal">
         <h2 class="contact-aside__title display display--sm">Contact us</h2>
         <p class="contact-aside__lede">문의하신 내용은 담당 부서에서 검토 후 신속하게 회신을 드립니다.</p>
         <p class="contact-aside__note">*영업일 기준 1~3일 소요 예정</p>
       </div>
-      <form class="contact-form" onsubmit="return false;">
+      <form class="contact-form reveal reveal--d1" onsubmit="return false;">
         <div class="field-grid">
           <div class="field">
             <label for="cf-name">이름 *</label>
@@ -274,5 +309,23 @@
   </div>
 </footer>
 
+<script>
+(function(){
+  var els = document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){
+    els.forEach(function(el){ el.classList.add('is-visible'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, {threshold:.15, rootMargin:'0px 0px -8% 0px'});
+  els.forEach(function(el){ io.observe(el); });
+})();
+</script>
 </body>
 </html>

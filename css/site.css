@@ -2,7 +2,7 @@
    FLATTEN — 팬덤 &amp; 브랜드 데이터 미디어 플랫폼 랜딩페이지
    브랜드 토큰 + 컴포넌트. styles.css(디자인 키트)는 수정하지 않음.
    variant: typo=loud / image=high / color=mono / image-radius=sharp / card-radius=sharp
-            / button-radius=custom(4px) / border=hairline / button-style=solid+text / fw=700/400 / spacing=space-12
+            / button-radius=sharp(0) / border=hairline / button-style=solid+text / fw=700/400 / spacing=space-12
    ※ Figma 레퍼런스 실측(get_design_context, node 11:683 홈 / 13:1076 Our Solutions 상세 / 13:1369 Contact —
      세 프레임 모두 "한 페이지" 랜딩 안에 섹션으로 흡수. 별도 페이지로 분리하지 않음)
      / 히어로 대형 타이포 Helvetica Neue Bold 212px, tracking -8.48px → 기존 --fs-display-lg(102px)
@@ -11,13 +11,15 @@
      / 섹션 padding 212px(홈 히어로/캠페인) · 80~120px(솔루션 상세/문의) 실측 → --space-section은 --space-12(200)
        유지, 솔루션·문의 섹션은 space-9~space-10로 별도 사용
      / 구분선 #666/#444 1px 실측 → border-hairline (hairline)
-     / image-radius 재판정: 캠페인 카드·히어로 칩은 5.3px였지만 Our Solutions 상세/Newsroom/Contact 프레임
-       이미지는 전부 radius 0 → 사진 전반을 sharp로 통일(라운드 불일치 정리), 버튼·인풋만 4px 라운드 유지
-     / 버튼 rounded-[4px] 다수 확인(shoeprize/문의하기/제출) → 기존 radius-sm(12px)보다 훨씬 작아
-       전용 --radius-btn(4px) 토큰 신설, button-style=solid(CTA)+text(내비) 두 스타일로 구성
+     / image-radius 재판정: 캠페인 카드·히어로 칩은 5.3px, 버튼은 4px였지만 Our Solutions 상세/Newsroom/
+       Contact 프레임 이미지는 전부 radius 0 → 사용자 지시로 이미지·뱃지·버튼·인풋 전부 0(sharp)으로 재통일,
+       기존 --radius-btn 토큰은 값만 0으로 교체(디자인 키트 badge의 radius-circle도 오버라이드)
+     / button-style=solid(CTA)+text(내비) 두 스타일로 구성
    ※ 사용자 지시: 페이지 이동처럼 보이는 화살표/버튼 전부 제거, 모든 이미지 영역은 플레이스홀더(#d9d9d9) 처리,
      Our Solutions 상세 프레임의 6개 행(레퍼런스 자체 중복) 중복 없이 3개로 정리하고 레이아웃 리듬(이미지 좌우
      교차, 5-7 분할)을 변주해 기존 홈 섹션과 똑같이 보이지 않도록 함. 한 페이지 랜딩 구조는 유지.
+     Contact 인풋은 박스+테두리에서 하단 라인만 남기는 sharp 스타일로 변경, 뱃지/버튼 radius 0 통일,
+     스크롤 진입 시 페이드업(reveal) 애니메이션 추가(prefers-reduced-motion은 디자인 키트 규칙으로 자동 무력화).
    ========================================================= */
 
 :root{
