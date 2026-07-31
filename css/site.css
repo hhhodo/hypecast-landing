@@ -3,19 +3,21 @@
    브랜드 토큰 + 컴포넌트. styles.css(디자인 키트)는 수정하지 않음.
    variant: typo=loud / image=high / color=mono / image-radius=sharp / card-radius=sharp
             / button-radius=custom(4px) / border=hairline / button-style=solid+text / fw=700/400 / spacing=space-12
-   ※ Figma 레퍼런스 실측(get_design_context, node 11:683, 13:1076, 13:1369 — 캔버스 2544/1920px 기준)
+   ※ Figma 레퍼런스 실측(get_design_context, node 11:683 홈 / 13:1076 Our Solutions 상세 / 13:1369 Contact —
+     세 프레임 모두 "한 페이지" 랜딩 안에 섹션으로 흡수. 별도 페이지로 분리하지 않음)
      / 히어로 대형 타이포 Helvetica Neue Bold 212px, tracking -8.48px → 기존 --fs-display-lg(102px)
        초과 구간이라 --fs-kinetic 토큰을 신설(반응형 clamp)하고 폰트는 Figma 실측대로 Helvetica Neue 유지
      / 본문 전반은 Pretendard(Medium/SemiBold/Regular) 실측 → 디자인 키트 두 웨이트(700/400) 규칙에 스냅
-     / 섹션 padding 212px(홈) · 80~120px(서브페이지) 실측 → --space-section을 --space-12(200)로 오버라이드,
-       서브페이지 히어로/섹션은 space-9~space-10 사용
+     / 섹션 padding 212px(홈 히어로/캠페인) · 80~120px(솔루션 상세/문의) 실측 → --space-section은 --space-12(200)
+       유지, 솔루션·문의 섹션은 space-9~space-10로 별도 사용
      / 구분선 #666/#444 1px 실측 → border-hairline (hairline)
-     / image-radius 재판정: 캠페인 카드·히어로 칩은 5.3px였지만 Our Solutions/Newsroom/Contact 서브페이지
+     / image-radius 재판정: 캠페인 카드·히어로 칩은 5.3px였지만 Our Solutions 상세/Newsroom/Contact 프레임
        이미지는 전부 radius 0 → 사진 전반을 sharp로 통일(라운드 불일치 정리), 버튼·인풋만 4px 라운드 유지
      / 버튼 rounded-[4px] 다수 확인(shoeprize/문의하기/제출) → 기존 radius-sm(12px)보다 훨씬 작아
        전용 --radius-btn(4px) 토큰 신설, button-style=solid(CTA)+text(내비) 두 스타일로 구성
    ※ 사용자 지시: 페이지 이동처럼 보이는 화살표/버튼 전부 제거, 모든 이미지 영역은 플레이스홀더(#d9d9d9) 처리,
-     서브페이지는 레퍼런스를 그대로 베끼지 않고 톤을 유지하며 레이아웃 리듬(이미지 좌우 교차 등)을 변주
+     Our Solutions 상세 프레임의 6개 행(레퍼런스 자체 중복) 중복 없이 3개로 정리하고 레이아웃 리듬(이미지 좌우
+     교차, 5-7 분할)을 변주해 기존 홈 섹션과 똑같이 보이지 않도록 함. 한 페이지 랜딩 구조는 유지.
    ========================================================= */
 
 :root{
@@ -80,15 +82,8 @@ body{background:var(--color-canvas);}
 .section__title{font-size:var(--fs-h1);font-weight:var(--fw-strong);color:var(--text-default);}
 .section__title--inverse{color:var(--text-default-inverse);}
 
-/* ---------- our solutions: 4-8 row list ---------- */
+/* ---------- our solutions ---------- */
 .solutions{background:var(--color-primary-900);}
-.solutions__list{margin-top:var(--space-7);}
-.solutions__row{display:grid;grid-template-columns:4fr 8fr;column-gap:var(--space-6);
-  align-items:start;padding-block:var(--space-7);border-top:var(--border-1);border-color:var(--color-primary-700);}
-.solutions__mark{font-size:var(--fs-body-1);font-weight:var(--fw-strong);letter-spacing:-.01em;
-  text-transform:uppercase;color:var(--text-default-inverse);}
-.solutions__desc{font-size:var(--fs-h3);font-weight:var(--fw-base);line-height:var(--lh-h3);
-  color:var(--text-default-inverse);}
 
 /* ---------- campaign highlights: 6-6 offset grid ---------- */
 .campaign-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-8);margin-top:var(--space-7);}
@@ -120,13 +115,13 @@ body{background:var(--color-canvas);}
 .page-hero__lede{margin-top:var(--space-4);color:var(--text-subtle);}
 .page-hero--center .page-hero__lede{max-width:44ch;margin-inline:auto;}
 
-/* ---------- solution rows: 6-6, 좌우 교차(offset) 배치 ---------- */
-.solution-rows{display:flex;flex-direction:column;gap:var(--space-11);padding-bottom:var(--space-11);}
-.solution-row{display:flex;align-items:center;gap:var(--space-9);}
+/* ---------- solution rows: 5-7, 좌우 교차 배치 (Campaign Highlights의 6-6과 겹치지 않도록 변주) ---------- */
+.solution-rows{display:flex;flex-direction:column;gap:var(--space-9);}
+.solution-row{display:flex;align-items:center;gap:var(--space-8);}
 .solution-row--reverse{flex-direction:row-reverse;}
-.solution-row__media{flex:1 1 50%;min-width:0;}
+.solution-row__media{flex:0 1 41.6667%;min-width:0;}
 .solution-row__media .img{width:100%;aspect-ratio:7/6;}
-.solution-row__body{flex:1 1 50%;min-width:0;}
+.solution-row__body{flex:0 1 58.3333%;min-width:0;}
 .solution-row__mark{font-size:var(--fs-body-1);font-weight:var(--fw-strong);letter-spacing:-.01em;
   text-transform:uppercase;color:var(--text-default);}
 .solution-row__title{margin-top:var(--space-6);font-size:var(--fs-card-title);font-weight:var(--fw-strong);
@@ -135,9 +130,16 @@ body{background:var(--color-canvas);}
   color:var(--text-subtle);}
 .solution-row__cta{margin-top:var(--space-6);}
 
+/* Our Solutions 섹션(어두운 배경)에 얹힐 때 대비를 위한 색상 반전 */
+.solutions .solution-row__mark,
+.solutions .solution-row__title{color:var(--text-default-inverse);}
+.solutions .solution-row__desc{color:var(--color-primary-200);}
+.solutions .btn{background:var(--color-canvas);color:var(--text-default);}
+.solutions .btn:hover{background:var(--color-primary-100);}
+
 /* ---------- contact form: 4-8 ---------- */
-.contact-layout{display:grid;grid-template-columns:4fr 8fr;gap:var(--space-8);padding-block:var(--space-9) var(--space-11);}
-.contact-aside__title{font-size:var(--fs-display-sm);}
+.contact-section{padding-block:var(--space-9) var(--space-11);}
+.contact-layout{display:grid;grid-template-columns:4fr 8fr;gap:var(--space-8);}
 .contact-aside__lede{margin-top:var(--space-6);font-size:var(--fs-body-2);color:var(--text-default);}
 .contact-aside__note{margin-top:var(--space-2);font-size:var(--fs-badge);color:var(--text-subtle);}
 .field-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-6);}
@@ -172,7 +174,6 @@ body{background:var(--color-canvas);}
 
 /* ---------- responsive ---------- */
 @media (max-width:1024px){
-  .solutions__row{grid-template-columns:1fr;row-gap:var(--space-3);}
   .campaign-grid{grid-template-columns:1fr;}
   .campaign-col--offset{margin-top:0;}
   .campaign-col{gap:var(--space-7);}

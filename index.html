@@ -1,12 +1,13 @@
-<!-- variant: typo=loud / image=high / color=mono / image-radius=soft / card-radius=soft / button-radius=soft / border=hairline / button-style=text / fw=700/400 / spacing=space-12 -->
+<!-- variant: typo=loud / image=high / color=mono / image-radius=sharp / card-radius=sharp / button-radius=custom(4px) / border=hairline / button-style=solid+text / fw=700/400 / spacing=space-12 -->
 <!--
   layout:
   1. Header             — full-bleed (topbar + nav)
   2. Hero                — full-bleed — center-stacked kinetic type (non-split)
-  3. Our Solutions        — full-bleed, wide container — 4-8 (× 3 rows)
+  3. Our Solutions        — full-bleed, wide container — 5-7 (× 3 rows, 미디어 좌/우 교차)
   4. Campaign Highlights  — full-bleed, wide container — 6-6 offset (2nd column offset down)
   5. Newsroom             — full-bleed, wide container — 4-4-4
-  6. Footer               — full-bleed, wide container
+  6. Contact              — wide container — 4-8 (안내 텍스트 + 문의 폼)
+  7. Footer               — full-bleed, wide container
 -->
 <!DOCTYPE html>
 <html lang="ko">
@@ -67,19 +68,45 @@
   <section class="section solutions" id="solutions">
     <div class="container container--wide">
       <h2 class="section__title section__title--inverse">Our Solutions</h2>
-      <div class="solutions__list">
-        <div class="solutions__row">
-          <p class="solutions__mark">shoeprize</p>
-          <p class="solutions__desc">커뮤니티를 기반으로 팬이 직접 참여할 수 있게, 쇼핑을 넘어 경험과 소통이 함께하는 브랜디드 미디어 플랫폼</p>
-        </div>
-        <div class="solutions__row">
-          <p class="solutions__mark">FLATTEN ERP</p>
-          <p class="solutions__desc">브랜드가 온·오프라인 멀티채널 커머스 업무를 통합 관리할 수 있도록 돕는 스마트 커머스 비즈니스 솔루션</p>
-        </div>
-        <div class="solutions__row">
-          <p class="solutions__mark">FLATTEN QUEUE</p>
-          <p class="solutions__desc">브랜드가 직접 팬을 모으고 소통하며 팬들을 깊이 이해할 수 있도록 돕는 완전히 새로운 캠페인 솔루션</p>
-        </div>
+      <div class="solution-rows">
+        <article class="solution-row">
+          <div class="solution-row__media">
+            <div class="img" role="img" aria-label="shoeprize 서비스 화면"></div>
+          </div>
+          <div class="solution-row__body">
+            <p class="solution-row__mark">shoeprize</p>
+            <h3 class="solution-row__title">커뮤니티를 기반으로 팬이 직접 참여할 수 있게, 쇼핑을 넘어 경험과 소통이 함께하는 브랜디드 미디어 플랫폼</h3>
+            <p class="solution-row__desc">한정판 론칭 소식과 브랜드 이벤트, 팬 참여형 콘텐츠를 한자리에 모아 팬이 직접 찾아와 소통하는
+              공간을 만듭니다. 쇼핑은 그 여정의 한 조각일 뿐, 핵심은 브랜드와 팬덤이 함께 성장하는 경험입니다.</p>
+            <a class="btn solution-row__cta" href="#contact">shoeprize 살펴보기</a>
+          </div>
+        </article>
+
+        <article class="solution-row solution-row--reverse">
+          <div class="solution-row__media">
+            <div class="img" role="img" aria-label="FLATTEN ERP 서비스 화면"></div>
+          </div>
+          <div class="solution-row__body">
+            <p class="solution-row__mark">FLATTEN ERP</p>
+            <h3 class="solution-row__title">브랜드가 온·오프라인 멀티채널 커머스 업무를 통합 관리할 수 있도록 돕는, 스마트 커머스 비즈니스 솔루션</h3>
+            <p class="solution-row__desc">상품·재고·물류·주문·고객 관리까지, 온오프라인 채널마다 흩어져 있던 업무를 하나의 흐름으로
+              연결합니다. 매장과 온라인몰을 넘나드는 운영을 한 곳에서 처리할 수 있도록 설계했습니다.</p>
+            <a class="btn solution-row__cta" href="#contact">문의하기</a>
+          </div>
+        </article>
+
+        <article class="solution-row">
+          <div class="solution-row__media">
+            <div class="img" role="img" aria-label="FLATTEN QUEUE 서비스 화면"></div>
+          </div>
+          <div class="solution-row__body">
+            <p class="solution-row__mark">FLATTEN QUEUE</p>
+            <h3 class="solution-row__title">브랜드가 직접 팬을 모으고 소통하며 팬들을 깊이 이해할 수 있도록 돕는, 완전히 새로운 캠페인 솔루션</h3>
+            <p class="solution-row__desc">판매, 홍보, 신규 유입, 퍼스트·제로파티 데이터 수집까지 — 캠페인 한 번으로 얻을 수 있는 성과를
+              넓히고, 그 과정에서 모인 팬 데이터를 브랜드가 직접 소유할 수 있도록 돕습니다.</p>
+            <a class="btn solution-row__cta" href="#contact">문의하기</a>
+          </div>
+        </article>
       </div>
     </div>
   </section>
@@ -162,9 +189,55 @@
     </div>
   </section>
 
+  <!-- Contact -->
+  <section class="contact-section" id="contact">
+    <div class="container container--wide contact-layout">
+      <div>
+        <h2 class="contact-aside__title display display--sm">Contact us</h2>
+        <p class="contact-aside__lede">문의하신 내용은 담당 부서에서 검토 후 신속하게 회신을 드립니다.</p>
+        <p class="contact-aside__note">*영업일 기준 1~3일 소요 예정</p>
+      </div>
+      <form class="contact-form" onsubmit="return false;">
+        <div class="field-grid">
+          <div class="field">
+            <label for="cf-name">이름 *</label>
+            <input id="cf-name" type="text" required>
+          </div>
+          <div class="field">
+            <label for="cf-company">소속 회사 *</label>
+            <input id="cf-company" type="text" required>
+          </div>
+          <div class="field">
+            <label for="cf-phone">휴대폰 번호 *</label>
+            <input id="cf-phone" type="tel" required>
+          </div>
+          <div class="field">
+            <label for="cf-dept">부서/직급</label>
+            <input id="cf-dept" type="text">
+          </div>
+          <div class="field field--full">
+            <label for="cf-email">이메일 *</label>
+            <input id="cf-email" type="email" required>
+          </div>
+          <div class="field field--full">
+            <label for="cf-message">문의 내용 *</label>
+            <textarea id="cf-message" placeholder="문의 내용을 입력해 주세요." required></textarea>
+          </div>
+        </div>
+        <label class="consent">
+          <input type="checkbox" required>
+          <span><a href="#contact">개인정보보호정책</a>에 동의합니다.</span>
+        </label>
+        <div class="contact-submit">
+          <button type="submit" class="btn btn--lg">위 내용으로 문의하기</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
 </main>
 
-<footer class="site-footer" id="contact">
+<footer class="site-footer">
   <div class="container container--wide">
     <div class="footer__top">
       <p class="footer__logo">FLATTEN</p>
