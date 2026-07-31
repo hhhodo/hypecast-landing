@@ -2,13 +2,13 @@
 <!--
   layout:
   1. Header             — full-bleed (topbar + nav, sticky GNB)
-  2. Hero                — full-bleed — center-stacked kinetic type (non-split)
-  3. Expand              — full-bleed — 스크롤 스크럽(히어로 하단 이미지 확대→전체화면→콘텐츠 공개)
-  4. Our Solutions        — full-bleed, wide container — 5-7 (× 3 rows, 미디어 좌/우 교차)
-  5. Campaign Highlights  — full-bleed, wide container — 6-6 offset (2nd column offset down)
-  6. Newsroom             — full-bleed, wide container — 4-4-4
-  7. Contact              — wide container — 4-8 (안내 텍스트 + 문의 폼)
-  8. Footer               — full-bleed, wide container
+  2. Hero                — full-bleed — center-stacked kinetic type, 스크롤 스크럽으로 마지막 이미지
+                            자체가 커져 전체화면 콘텐츠로 전환(별도 섹션/이미지 없이 동일 요소)
+  3. Our Solutions        — full-bleed, wide container — 5-7 (× 3 rows, 미디어 좌/우 교차)
+  4. Campaign Highlights  — full-bleed, wide container — 6-6 offset (2nd column offset down)
+  5. Newsroom             — full-bleed, wide container — 4-4-4
+  6. Contact              — wide container — 4-8 (안내 텍스트 + 문의 폼)
+  7. Footer               — full-bleed, wide container
 -->
 <!DOCTYPE html>
 <html lang="ko">
@@ -44,37 +44,32 @@
 
 <main>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="hero__lines">
-      <p class="kinetic-line reveal">
-        <span class="kinetic-word">EM</span>
-        <img class="img kinetic-chip" src="assets/images/tijs-van-leur-So6YckShOVA-unsplash.jpg" alt="팬 참여 캠페인 이미지">
-        <span class="kinetic-word">POWERING</span>
-      </p>
-      <p class="kinetic-line reveal reveal--d1">
-        <span class="kinetic-word">FANDOM</span>
-        <span class="kinetic-amp">&amp;</span>
-        <span class="kinetic-word">BRAND</span>
-        <img class="img kinetic-chip" src="assets/images/rachel-coyne-U7HLzMO4SIY-unsplash.jpg" alt="브랜드 캠페인 이미지">
-      </p>
-      <p class="kinetic-line reveal reveal--d2">
-        <span class="kinetic-word">THROUGH</span>
-        <img class="img kinetic-chip" id="hero-data-chip" src="assets/images/vinicius-amnx-amano-pAwXYkNzgiI-unsplash.jpg" alt="데이터 인사이트 이미지">
-        <span class="kinetic-word">DATA</span>
-      </p>
-    </div>
-  </section>
-
-  <!-- Expand: 히어로 하단(데이터 인사이트) 이미지가 스크롤에 따라 커지며 전체화면을 채우고 콘텐츠 공개 -->
-  <section class="expand" id="expand">
-    <div class="expand__stage">
-      <img class="expand__media img" src="assets/images/vinicius-amnx-amano-pAwXYkNzgiI-unsplash.jpg" alt="데이터 인사이트 이미지">
-      <div class="expand__dim"></div>
-      <div class="expand__content">
+  <!-- Hero: 마지막 줄의 데이터 인사이트 이미지 자체가 스크롤에 따라 커지며 전체화면 콘텐츠로 전환(동일 요소) -->
+  <section class="hero" id="hero">
+    <div class="hero__sticky">
+      <div class="hero__lines">
+        <p class="kinetic-line reveal">
+          <span class="kinetic-word hero__fade">EM</span>
+          <img class="img kinetic-chip hero__fade" src="assets/images/tijs-van-leur-So6YckShOVA-unsplash.jpg" alt="팬 참여 캠페인 이미지">
+          <span class="kinetic-word hero__fade">POWERING</span>
+        </p>
+        <p class="kinetic-line reveal reveal--d1">
+          <span class="kinetic-word hero__fade">FANDOM</span>
+          <span class="kinetic-amp hero__fade">&amp;</span>
+          <span class="kinetic-word hero__fade">BRAND</span>
+          <img class="img kinetic-chip hero__fade" src="assets/images/rachel-coyne-U7HLzMO4SIY-unsplash.jpg" alt="브랜드 캠페인 이미지">
+        </p>
+        <p class="kinetic-line reveal reveal--d2">
+          <span class="kinetic-word hero__fade">THROUGH</span>
+          <img class="img kinetic-chip hero__expand-media" id="hero-data-chip" src="assets/images/vinicius-amnx-amano-pAwXYkNzgiI-unsplash.jpg" alt="데이터 인사이트 이미지">
+          <span class="kinetic-word hero__fade">DATA</span>
+        </p>
+      </div>
+      <div class="hero__dim"></div>
+      <div class="hero__reveal">
         <p class="eyebrow eyebrow--inverse">DATA INSIGHT</p>
-        <h2 class="expand__title">팬덤의 모든 순간이 데이터가 됩니다</h2>
-        <p class="expand__desc">방문, 참여, 구매까지 — 오프라인과 온라인 접점에서 쌓인 팬 행동 데이터를 실시간으로
+        <h2 class="hero__reveal-title">팬덤의 모든 순간이 데이터가 됩니다</h2>
+        <p class="hero__reveal-desc">방문, 참여, 구매까지 — 오프라인과 온라인 접점에서 쌓인 팬 행동 데이터를 실시간으로
           모으고 연결해, 브랜드가 다음 캠페인을 설계할 근거로 바꿔드립니다.</p>
       </div>
     </div>
@@ -337,31 +332,38 @@
 })();
 
 (function(){
-  var section = document.getElementById('expand');
-  if(!section) return;
-  var media = section.querySelector('.expand__media');
-  var dim = section.querySelector('.expand__dim');
-  var content = section.querySelector('.expand__content');
+  var hero = document.getElementById('hero');
+  if(!hero) return;
+  var media = document.getElementById('hero-data-chip');
+  var fadeEls = hero.querySelectorAll('.hero__fade');
+  var dim = hero.querySelector('.hero__dim');
+  var content = hero.querySelector('.hero__reveal');
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(reduceMotion){
     media.style.transform = 'scale(2)';
+    fadeEls.forEach(function(el){ el.style.opacity = 0; });
     dim.style.opacity = .45;
     content.style.opacity = 1;
     return;
   }
-  var baseW = media.offsetWidth, baseH = media.offsetHeight;
   var ticking = false;
   function update(){
-    var rect = section.getBoundingClientRect();
+    var rect = hero.getBoundingClientRect();
     var vh = window.innerHeight;
     var total = rect.height - vh;
     var progress = total > 0 ? (-rect.top) / total : 0;
     progress = Math.max(0, Math.min(1, progress));
-    var growP = Math.min(1, progress / .7);
-    var coverScale = Math.max(vh / baseH, (window.innerWidth * 1.1) / baseW);
+
+    var growP = Math.min(1, progress / .6);
+    var baseW = media.offsetWidth, baseH = media.offsetHeight;
+    var coverScale = Math.max(vh / baseH, (window.innerWidth * 1.05) / baseW);
     var scale = 1 + growP * (coverScale - 1);
     media.style.transform = 'scale(' + scale.toFixed(3) + ')';
-    var revealP = Math.max(0, (progress - .7) / .3);
+
+    var fadeOpacity = (1 - Math.min(1, progress / .35)).toFixed(3);
+    fadeEls.forEach(function(el){ el.style.opacity = fadeOpacity; });
+
+    var revealP = Math.max(0, (progress - .6) / .4);
     dim.style.opacity = (revealP * .5).toFixed(3);
     content.style.opacity = revealP.toFixed(3);
     ticking = false;
@@ -370,7 +372,7 @@
     if(!ticking){ window.requestAnimationFrame(update); ticking = true; }
   }
   window.addEventListener('scroll', onScroll, {passive:true});
-  window.addEventListener('resize', function(){ baseW = media.offsetWidth; baseH = media.offsetHeight; onScroll(); });
+  window.addEventListener('resize', onScroll);
   update();
 })();
 
