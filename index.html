@@ -66,6 +66,7 @@
         </p>
       </div>
       <img class="img hero__expand-media" id="hero-data-chip" src="assets/images/hulki-okan-tabak-hLr1Co7dl7s-unsplash.jpg" alt="데이터 인사이트 이미지">
+      <div class="hero__trail" id="hero-trail" aria-hidden="true"></div>
       <div class="hero__dim"></div>
       <div class="hero__reveal">
         <p class="eyebrow eyebrow--inverse">DATA INSIGHT</p>
@@ -378,22 +379,22 @@
     var vh = window.innerHeight;
 
     // 작은 고스트 청 → 큰 실제 이미지로 스크롤 초반에 짧게 크로스페이드(같은 사진이라 이어 보임)
-    var swapP = ease(Math.min(1, progress / .12));
+    var swapP = ease(Math.min(1, progress / .1));
     ghost.style.opacity = (1 - swapP).toFixed(3);
     media.style.opacity = swapP.toFixed(3);
 
-    var growP = ease(Math.min(1, progress / .55));
+    var growP = ease(Math.min(1, progress / .8));
     var baseW = media.offsetWidth, baseH = media.offsetHeight;
     var coverScale = Math.max(vh / baseH, (window.innerWidth * 1.05) / baseW);
     var startScale = .75;
     var scale = startScale + growP * (coverScale - startScale);
     media.style.transform = 'translate(-50%,-50%) scale(' + scale.toFixed(3) + ')';
 
-    var fadeOpacity = 1 - ease(Math.min(1, progress / .25));
+    var fadeOpacity = 1 - ease(Math.min(1, progress / .35));
     fadeEls.forEach(function(el){ el.style.opacity = fadeOpacity.toFixed(3); });
     ghost.style.opacity = (1 - swapP).toFixed(3);
 
-    var revealP = ease(Math.max(0, (progress - .55) / .45));
+    var revealP = ease(Math.max(0, (progress - .8) / .2));
     dim.style.opacity = (revealP * .5).toFixed(3);
     content.style.opacity = revealP.toFixed(3);
   }
@@ -410,6 +411,71 @@
   computeTarget();
   currentProgress = targetProgress;
   window.requestAnimationFrame(raf);
+})();
+
+(function(){
+  // 히어로 안에서만: 마우스를 따라 랜덤 실사진이 하나씩 나타났다 사라지는 트레일 인터랙션
+  var hero = document.getElementById('hero');
+  var trail = document.getElementById('hero-trail');
+  if(!hero || !trail) return;
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if(window.matchMedia('(hover: none)').matches) return;
+
+  var sources = [
+    'assets/images/evan-jeung-l0SiVK5WBH0-unsplash.jpg',
+    'assets/images/hulki-okan-tabak-OvYzpw5x0zQ-unsplash.jpg',
+    'assets/images/hulki-okan-tabak-hLr1Co7dl7s-unsplash.jpg',
+    'assets/images/hulki-okan-tabak-t0WFxtrUgSc-unsplash.jpg',
+    'assets/images/jorge-alberto-vega-barrera-1J6oEUhEWU4-unsplash.jpg',
+    'assets/images/joshua-hanson-Qizcmx0djrw-unsplash.jpg',
+    'assets/images/leon-jl-TgrsRDe-cEY-unsplash.jpg',
+    'assets/images/leon-rockel-youfmg5B2Ps-unsplash.jpg',
+    'assets/images/matt-richmond-3b0FOoASDbI-unsplash.jpg',
+    'assets/images/rachel-coyne-U7HLzMO4SIY-unsplash.jpg',
+    'assets/images/rafael-garcin-KmVbrso2N4M-unsplash.jpg',
+    'assets/images/ryoji-iwata-X53e51WfjlE-unsplash.jpg',
+    'assets/images/tijs-van-leur-So6YckShOVA-unsplash.jpg',
+    'assets/images/tomas-malik-X1Y9XmMq9wI-unsplash.jpg',
+    'assets/images/tyler-callahan-pcGLNRCICnA-unsplash.jpg',
+    'assets/images/vinicius-amnx-amano-pAwXYkNzgiI-unsplash.jpg'
+  ];
+  var lastX = null, lastY = null, lastSpawn = 0;
+  var minDist = 70, minInterval = 110;
+
+  function spawn(x, y){
+    var img = document.createElement('img');
+    img.src = sources[Math.floor(Math.random() * sources.length)];
+    img.alt = '';
+    img.style.left = x + 'px';
+    img.style.top = y + 'px';
+    var size = 90 + Math.random() * 60;
+    img.style.width = size + 'px';
+    img.style.setProperty('--rot', (Math.random() * 16 - 8).toFixed(1) + 'deg');
+    trail.appendChild(img);
+    window.requestAnimationFrame(function(){
+      window.requestAnimationFrame(function(){ img.classList.add('is-in'); });
+    });
+    setTimeout(function(){
+      img.classList.remove('is-in');
+      img.classList.add('is-out');
+      setTimeout(function(){ img.remove(); }, 550);
+    }, 650);
+  }
+
+  hero.addEventListener('mousemove', function(e){
+    var rect = hero.getBoundingClientRect();
+    var x = e.clientX - rect.left;
+    var y = e.clientY - rect.top;
+    if(y < 0 || y > rect.height) return;
+    var now = performance.now();
+    if(lastX !== null){
+      var dx = x - lastX, dy = y - lastY;
+      if(Math.sqrt(dx * dx + dy * dy) < minDist) return;
+    }
+    if(now - lastSpawn < minInterval) return;
+    lastX = x; lastY = y; lastSpawn = now;
+    spawn(x, y);
+  });
 })();
 
 (function(){

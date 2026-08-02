@@ -85,7 +85,7 @@ header{position:sticky;top:0;z-index:20;}
      opacity 0으로 숨겨뒀다가, 텍스트 줄 안의 작은 고스트 청(#hero-chip-ghost, 동일 사진)이
      스크롤 초반 사라지는 순간 큰 이미지가 페이드인하며 이어받아 확대 — 업스케일 배율이
      파일 해상도(1600px) 기준 최대 1.1~1.3배 정도로 줄어 화질 저하가 크게 줄어듦. */
-.hero{height:min(320vh, 2600px);position:relative;}
+.hero{height:min(420vh, 3200px);position:relative;}
 .hero__sticky{position:sticky;top:0;height:100vh;width:100%;overflow:hidden;
   display:flex;align-items:center;justify-content:center;background:var(--color-canvas);}
 .hero__lines{width:100%;padding-inline:var(--gutter);}
@@ -102,15 +102,24 @@ header{position:sticky;top:0;z-index:20;}
    버벅이지 않도록 이 두 요소만 트랜지션 없이 즉시 반영 */
 #hero-chip-ghost,.hero__expand-media{transition:none;}
 .hero__dim{position:absolute;inset:0;background:var(--color-primary-900);opacity:0;pointer-events:none;
-  will-change:opacity;}
+  will-change:opacity;z-index:4;}
 .hero__reveal{position:absolute;max-width:640px;text-align:center;
-  padding-inline:var(--gutter);opacity:0;pointer-events:none;will-change:opacity;}
+  padding-inline:var(--gutter);opacity:0;pointer-events:none;will-change:opacity;z-index:5;}
+
+/* ---------- hero: 마우스를 따라다니며 랜덤 실사진이 하나씩 나타났다 사라지는 트레일 인터랙션 ---------- */
+.hero__trail{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:3;}
+.hero__trail img{position:absolute;top:0;left:0;width:110px;aspect-ratio:2/3;object-fit:cover;
+  border-radius:var(--radius-0);opacity:0;background:var(--color-placeholder);
+  transform:translate(-50%,-50%) scale(.7) rotate(var(--rot,0deg));
+  transition:opacity .35s ease, transform .5s cubic-bezier(.16,.84,.44,1);}
+.hero__trail img.is-in{opacity:.95;transform:translate(-50%,-50%) scale(1) rotate(var(--rot,0deg));}
+.hero__trail img.is-out{opacity:0;transform:translate(-50%,-50%) scale(1.08) rotate(var(--rot,0deg));}
 .hero__fade{will-change:opacity;}
 .hero__reveal-title{margin-top:var(--space-4);font-size:var(--fs-h1);font-weight:var(--fw-strong);
   color:var(--text-default-inverse);}
 .hero__reveal-desc{margin-top:var(--space-5);font-size:var(--fs-body-1);color:var(--color-primary-200);}
 @media (max-width:768px){
-  .hero{height:min(260vh, 1800px);}
+  .hero{height:min(340vh, 2200px);}
 }
 
 /* ---------- section heading (no arrow — plain text) ---------- */
