@@ -95,6 +95,9 @@ header{position:sticky;top:0;z-index:20;}
   text-transform:uppercase;color:var(--text-default);}
 .kinetic-amp{font-family:var(--font-kinetic);font-weight:700;
   font-size:var(--fs-kinetic);line-height:var(--lh-kinetic);color:var(--text-default);}
+/* 폰트 하이픈 글리프가 대형 서체 대비 너무 짧고 얇아 보여, 굵기에 맞춰 직접 그린 대시 사용 */
+.kinetic-dash{display:inline-block;vertical-align:middle;width:.65em;height:.13em;
+  background:currentColor;margin-inline:.2em;}
 .kinetic-chip{display:inline-block;vertical-align:middle;width:1.3em;aspect-ratio:3/2;margin-inline:.12em;}
 .hero__expand-media{position:absolute;top:50%;left:50%;z-index:1;will-change:transform,opacity;
   width:min(90vw,1400px);aspect-ratio:3/2;opacity:0;transform:translate(-50%,-50%) scale(.75);}
