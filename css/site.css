@@ -61,20 +61,12 @@ body{background:var(--color-canvas);}
 .btn:hover{background:var(--color-primary-700);}
 .btn--lg{height:52px;padding-inline:var(--space-6);font-size:var(--fs-body-2);}
 
-/* ---------- header (GNB) — topbar+nav를 한 덩어리로 상단 고정 ---------- */
+/* ---------- header (GNB) — 로고 + 문의하기 버튼만 남긴 단순 구성, 상단 고정 ---------- */
 header{position:sticky;top:0;z-index:20;}
-.topbar{background:var(--color-primary-900);}
-.topbar__row{display:flex;justify-content:flex-end;padding:var(--space-2) var(--gutter);}
-.topbar__link{font-size:var(--fs-badge);font-weight:var(--fw-strong);color:var(--text-default-inverse);}
-
 .nav{display:flex;align-items:center;justify-content:space-between;
   padding:var(--space-4) var(--gutter);background:rgba(255,255,255,.85);
   backdrop-filter:blur(6px);}
 .nav__logo{font-size:var(--fs-body-1);font-weight:var(--fw-strong);letter-spacing:-.01em;color:var(--text-default);}
-.nav__links{display:flex;align-items:center;gap:var(--space-6);}
-.nav__links a{font-size:var(--fs-badge);font-weight:var(--fw-base);color:var(--text-subtle);}
-.nav__links a:hover{color:var(--text-default);}
-.nav__links a.is-current{font-weight:var(--fw-strong);color:var(--text-default);}
 
 /* ---------- hero: kinetic type + 스크롤 스크럽(마지막 이미지가 커져 전체화면 콘텐츠로 전환) ----------
    표준 inline 텍스트 흐름 사용(flex-wrap 대신) — 거대 텍스트 사이에 인라인 이미지가
@@ -235,7 +227,6 @@ header{position:sticky;top:0;z-index:20;}
   .contact-layout{grid-template-columns:1fr;}
 }
 @media (max-width:768px){
-  .nav__links{display:none;}
   .news-grid{grid-template-columns:1fr;}
   .kinetic-chip{width:2.4em;}
   .field-grid{grid-template-columns:1fr;}

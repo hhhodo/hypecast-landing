@@ -1,7 +1,7 @@
 <!-- variant: typo=loud / image=high / color=mono / image-radius=sharp / card-radius=sharp / button-radius=sharp(0) / border=hairline / button-style=solid+text / fw=700/400 / spacing=space-12 -->
 <!--
   layout:
-  1. Header             — full-bleed (topbar + nav, sticky GNB)
+  1. Header             — full-bleed (로고 + 문의하기 버튼, sticky GNB)
   2. Hero                — full-bleed — center-stacked kinetic type, 스크롤 스크럽으로 마지막 이미지
                             자체가 커져 전체화면 콘텐츠로 전환(별도 섹션/이미지 없이 동일 요소)
   3. Our Solutions        — full-bleed, wide container — 5-7 (× 3 rows, 미디어 좌/우 교차)
@@ -25,20 +25,9 @@
 <body>
 
 <header id="top">
-  <div class="topbar">
-    <div class="topbar__row">
-      <p class="topbar__link">shoeprize</p>
-    </div>
-  </div>
   <div class="nav">
     <a class="nav__logo" href="#top">HYPECAST</a>
-    <nav class="nav__links">
-      <a href="#top">Why HYPECAST</a>
-      <a href="#solutions">Our Solutions</a>
-      <a href="#campaigns">All Campaigns</a>
-      <a href="#newsroom">Newsroom</a>
-      <a href="#contact">Contact Us</a>
-    </nav>
+    <a class="btn" href="#contact">문의하기</a>
   </div>
 </header>
 
