@@ -197,15 +197,12 @@ header{position:sticky;top:0;z-index:20;}
 .consent a:hover{color:var(--text-default);}
 .contact-submit{display:flex;justify-content:flex-end;margin-top:var(--space-7);}
 
-/* ---------- footer ---------- */
+/* ---------- footer: 로고 + 문의하기 링크 + 회사정보만 남긴 단순 구성 ---------- */
 .site-footer{background:var(--color-primary-900);padding-block:var(--space-9);}
-.footer__top{display:flex;justify-content:space-between;gap:var(--space-6);flex-wrap:wrap;}
+.footer__top{display:flex;align-items:center;justify-content:space-between;gap:var(--space-6);}
 .footer__logo{font-size:var(--fs-body-1);font-weight:var(--fw-strong);color:var(--text-default-inverse);}
-.footer__nav{display:flex;gap:var(--space-7);flex-wrap:wrap;}
-.footer__col{display:flex;flex-direction:column;gap:var(--space-3);min-width:8em;}
 .footer__heading{font-size:var(--fs-badge);font-weight:var(--fw-strong);color:var(--text-default-inverse);}
-.footer__col a{font-size:var(--fs-badge);font-weight:var(--fw-base);color:var(--color-primary-200);}
-.footer__col a:hover{color:var(--text-default-inverse);}
+.footer__heading:hover{color:var(--color-primary-200);}
 .footer__rule{margin-block:var(--space-7);border:none;border-top:1px solid var(--color-primary-700);}
 .footer__bottom p{font-size:var(--fs-badge);color:var(--color-primary-400);}
 .footer__bottom p + p{margin-top:var(--space-2);}
