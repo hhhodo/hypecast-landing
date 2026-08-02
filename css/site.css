@@ -76,11 +76,15 @@ header{position:sticky;top:0;z-index:20;}
 .nav__links a:hover{color:var(--text-default);}
 .nav__links a.is-current{font-weight:var(--fw-strong);color:var(--text-default);}
 
-/* ---------- hero: kinetic type + 스크롤 스크럽(마지막 이미지 자체가 커져 전체화면 콘텐츠로 전환) ----------
+/* ---------- hero: kinetic type + 스크롤 스크럽(마지막 이미지가 커져 전체화면 콘텐츠로 전환) ----------
    표준 inline 텍스트 흐름 사용(flex-wrap 대신) — 거대 텍스트 사이에 인라인 이미지가
    섞여 자연스럽게 줄바꿈되어야 하는 패턴은 flexbox보다 inline 흐름이 훨씬 안정적.
-   Expand는 별도 섹션/이미지가 아니라 히어로의 세 번째 이미지(#hero-data-chip) 자체를
-   transform:scale로 키우는 동일 요소 방식 — "다른 이미지가 새로 나타난다"는 인상을 주지 않음. */
+   ※ 확대 이미지 화질 문제 재수정: 작은 inline 청(1.3em)을 transform:scale로 8~10배 키우면
+     브라우저가 작은 크기로 래스터화한 비트맵을 그대로 늘려서 뿌옇게 깨짐. 그래서 실제로
+     커지는 이미지(#hero-data-chip)는 처음부터 큰 레이아웃 박스(최대 1400px)로 절대배치해 두고
+     opacity 0으로 숨겨뒀다가, 텍스트 줄 안의 작은 고스트 청(#hero-chip-ghost, 동일 사진)이
+     스크롤 초반 사라지는 순간 큰 이미지가 페이드인하며 이어받아 확대 — 업스케일 배율이
+     파일 해상도(1600px) 기준 최대 1.1~1.3배 정도로 줄어 화질 저하가 크게 줄어듦. */
 .hero{height:min(320vh, 2600px);position:relative;}
 .hero__sticky{position:sticky;top:0;height:100vh;width:100%;overflow:hidden;
   display:flex;align-items:center;justify-content:center;background:var(--color-canvas);}
@@ -92,10 +96,11 @@ header{position:sticky;top:0;z-index:20;}
 .kinetic-amp{font-family:var(--font-kinetic);font-weight:700;
   font-size:var(--fs-kinetic);line-height:var(--lh-kinetic);color:var(--text-default);}
 .kinetic-chip{display:inline-block;vertical-align:middle;width:1.3em;aspect-ratio:3/2;margin-inline:.12em;}
-/* 스크롤에 따라 전체화면까지 커지는 이미지 — 확대 배율을 최대한 줄여 화질 저하를 최소화하도록
-   나머지 히어로 청보다 기본 크기를 훨씬 크게(뷰포트 비례) 잡음. 원본도 가로 1600px 실사진으로 교체 */
-.hero__expand-media{position:relative;z-index:1;will-change:transform;
-  width:clamp(90px, 12vw, 260px);aspect-ratio:3/2;}
+.hero__expand-media{position:absolute;top:50%;left:50%;z-index:1;will-change:transform,opacity;
+  width:min(90vw,1400px);aspect-ratio:3/2;opacity:0;transform:translate(-50%,-50%) scale(.75);}
+/* 스크롤에 맞춰 JS가 매 프레임 opacity를 직접 갱신하므로, .img의 로드 페이드 트랜지션과 겹쳐
+   버벅이지 않도록 이 두 요소만 트랜지션 없이 즉시 반영 */
+#hero-chip-ghost,.hero__expand-media{transition:none;}
 .hero__dim{position:absolute;inset:0;background:var(--color-primary-900);opacity:0;pointer-events:none;
   will-change:opacity;}
 .hero__reveal{position:absolute;max-width:640px;text-align:center;

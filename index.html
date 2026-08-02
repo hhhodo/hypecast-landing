@@ -61,10 +61,11 @@
         </p>
         <p class="kinetic-line reveal reveal--d2">
           <span class="kinetic-word hero__fade">INTO</span>
-          <img class="img kinetic-chip hero__expand-media" id="hero-data-chip" src="assets/images/hulki-okan-tabak-hLr1Co7dl7s-unsplash.jpg" alt="데이터 인사이트 이미지">
+          <img class="img kinetic-chip hero__fade" id="hero-chip-ghost" src="assets/images/hulki-okan-tabak-hLr1Co7dl7s-unsplash.jpg" alt="데이터 인사이트 이미지" aria-hidden="true">
           <span class="kinetic-word hero__fade">DATA</span>
         </p>
       </div>
+      <img class="img hero__expand-media" id="hero-data-chip" src="assets/images/hulki-okan-tabak-hLr1Co7dl7s-unsplash.jpg" alt="데이터 인사이트 이미지">
       <div class="hero__dim"></div>
       <div class="hero__reveal">
         <p class="eyebrow eyebrow--inverse">DATA INSIGHT</p>
@@ -347,13 +348,16 @@
 (function(){
   var hero = document.getElementById('hero');
   if(!hero) return;
+  var ghost = document.getElementById('hero-chip-ghost');
   var media = document.getElementById('hero-data-chip');
   var fadeEls = hero.querySelectorAll('.hero__fade');
   var dim = hero.querySelector('.hero__dim');
   var content = hero.querySelector('.hero__reveal');
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(reduceMotion){
-    media.style.transform = 'scale(2)';
+    ghost.style.opacity = 0;
+    media.style.opacity = 1;
+    media.style.transform = 'translate(-50%,-50%) scale(1.6)';
     fadeEls.forEach(function(el){ el.style.opacity = 0; });
     dim.style.opacity = .45;
     content.style.opacity = 1;
@@ -372,16 +376,24 @@
 
   function render(progress){
     var vh = window.innerHeight;
-    var growP = ease(Math.min(1, progress / .5));
+
+    // 작은 고스트 청 → 큰 실제 이미지로 스크롤 초반에 짧게 크로스페이드(같은 사진이라 이어 보임)
+    var swapP = ease(Math.min(1, progress / .12));
+    ghost.style.opacity = (1 - swapP).toFixed(3);
+    media.style.opacity = swapP.toFixed(3);
+
+    var growP = ease(Math.min(1, progress / .55));
     var baseW = media.offsetWidth, baseH = media.offsetHeight;
     var coverScale = Math.max(vh / baseH, (window.innerWidth * 1.05) / baseW);
-    var scale = 1 + growP * (coverScale - 1);
-    media.style.transform = 'scale(' + scale.toFixed(3) + ')';
+    var startScale = .75;
+    var scale = startScale + growP * (coverScale - startScale);
+    media.style.transform = 'translate(-50%,-50%) scale(' + scale.toFixed(3) + ')';
 
     var fadeOpacity = 1 - ease(Math.min(1, progress / .25));
     fadeEls.forEach(function(el){ el.style.opacity = fadeOpacity.toFixed(3); });
+    ghost.style.opacity = (1 - swapP).toFixed(3);
 
-    var revealP = ease(Math.max(0, (progress - .5) / .5));
+    var revealP = ease(Math.max(0, (progress - .55) / .45));
     dim.style.opacity = (revealP * .5).toFixed(3);
     content.style.opacity = revealP.toFixed(3);
   }
