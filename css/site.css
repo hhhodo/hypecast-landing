@@ -55,11 +55,11 @@ body{background:var(--color-canvas);}
 
 /* ---------- button ---------- */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);
-  height:40px;padding-inline:var(--space-5);border-radius:var(--radius-btn);
+  height:48px;padding-inline:var(--space-5);border-radius:var(--radius-btn);
   background:var(--color-primary-900);color:var(--text-default-inverse);
-  font-size:var(--fs-badge);font-weight:var(--fw-strong);white-space:nowrap;}
+  font-size:var(--fs-body-1);font-weight:var(--fw-strong);white-space:nowrap;}
 .btn:hover{background:var(--color-primary-700);}
-.btn--lg{height:52px;padding-inline:var(--space-6);font-size:var(--fs-body-2);}
+.btn--lg{height:58px;padding-inline:var(--space-6);font-size:var(--fs-body-1);}
 
 /* ---------- header (GNB) — 로고 + 문의하기 버튼만 남긴 단순 구성, 상단 고정 ---------- */
 header{position:sticky;top:0;z-index:20;}
