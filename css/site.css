@@ -222,6 +222,7 @@ header{position:sticky;top:0;z-index:20;}
   .campaign-col{gap:var(--space-7);}
   .news-grid{grid-template-columns:1fr 1fr;}
   .solution-row,.solution-row--reverse{flex-direction:column;align-items:stretch;gap:var(--space-6);}
+  .solution-row__media,.solution-row__body{flex-basis:auto;}
   .contact-layout{grid-template-columns:1fr;}
 }
 @media (max-width:768px){
@@ -230,4 +231,8 @@ header{position:sticky;top:0;z-index:20;}
   .field-grid{grid-template-columns:1fr;}
   .contact-submit{justify-content:stretch;}
   .contact-submit .btn{width:100%;}
+  .footer__top{flex-wrap:wrap;gap:var(--space-4);}
+  .footer__sns{gap:var(--space-5);flex-wrap:wrap;}
+  .hero__trail{display:none;}
+  .btn{padding-inline:var(--space-4);}
 }

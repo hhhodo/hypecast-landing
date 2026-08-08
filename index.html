@@ -390,7 +390,13 @@
   var trail = document.getElementById('hero-trail');
   if(!hero || !trail) return;
   if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  if(window.matchMedia('(hover: none)').matches) return;
+  // 모바일/터치 기기에서는 마우스 트레일을 아예 켜지 않음(호버 불가 + 터치 포인터 + 좁은 화면까지 겹으로 체크)
+  var isTouch = window.matchMedia('(hover: none)').matches
+    || window.matchMedia('(pointer: coarse)').matches
+    || ('ontouchstart' in window)
+    || navigator.maxTouchPoints > 0
+    || window.matchMedia('(max-width: 768px)').matches;
+  if(isTouch) return;
 
   var sources = [
     'assets/images/evan-jeung-l0SiVK5WBH0-unsplash.jpg',
