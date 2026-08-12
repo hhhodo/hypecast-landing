@@ -29,7 +29,7 @@
   --space-section:var(--space-12);
 
   /* 히어로 킨네틱 타이포 — Figma 실측 212px을 반응형으로 스냅(전용 토큰) */
-  --fs-kinetic:clamp(1.6rem, 7.5vw, 9.4rem);
+  --fs-kinetic:clamp(2rem, 8.5vw, 9.4rem);
   --lh-kinetic:0.94;
   --tracking-kinetic:-0.035em;
   --font-kinetic:'Helvetica Neue', Helvetica, Arial, sans-serif;
